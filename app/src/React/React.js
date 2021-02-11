@@ -13,7 +13,7 @@ export let React = {
 
         display(newProps = null)
         {
-            if (shouldUpdate(newProps))
+            if (this.shouldUpdate(newProps))
             {
                 if(newProps != null)
                 {
@@ -26,7 +26,7 @@ export let React = {
 
         shouldUpdate(newProps)
         {
-            return JSON.stringify(this.props) !== JSON.stringify(this.newProps);
+            return JSON.stringify(this.props) !== JSON.stringify(this.newProps) || newProps === null;
         }
 
         setState(state)
@@ -38,14 +38,14 @@ export let React = {
 
         render() 
         {
-            //Uniquement dans les components
+            //A coder dans les components
         }
     },
 
     createElement: function(tagOrComponent, props, children)
     {
         let element;
-        if (tagOrComponent === "div")
+        if (typeof(tagOrComponent) === "string") // Si élement du DOM
         {
             element = document.createElement(tagOrComponent);
             for (let attribute in props)
@@ -56,13 +56,22 @@ export let React = {
             {
                 if (typeof subElement === "string")
                 {
-                    subElement = document.createTextNode(subElement.interpolate(props));
-                    element.appendChild(subElement);
+                    if (props != null) 
+                    {
+                        subElement = subElement.interpolate(props);
+                    }
+                    subElement = document.createTextNode(subElement);
+                    
                 }
+                element.appendChild(subElement);
             }
         } else { //Objet dans la classe component, vérifier si l'instance existe. Si elle existe, on la récupère, sinon on la crée
-            if (!type_check(props, tagOrComponent.propsTypes)) throw new TypeError(); // Le display doit être dans une instance déjà créé
-            return tagOrComponent.display(props);
+            if (typeof(tagOrComponent.propsTypes) !== 'undefined' && !type_check(props, tagOrComponent.propsTypes)) throw new TypeError();
+             // Le display doit être dans une instance déjà créé
+            const component = new tagOrComponent(props);
+            const essai = component.display();
+            console.log(essai);
+            return essai;
         }
         return element;
     },

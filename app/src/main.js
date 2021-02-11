@@ -2,7 +2,7 @@ import { React } from "./React/React.js";
 import { ReactDOM } from "./React/ReactDOM.js";
 import { prop_access } from "./React/libs/prop_access.js";
 import { interpolate } from "./React/libs/interpolate.js";
-import { hello } from "./Components/Hello.js";
+import { Hello } from "./Components/Hello.js";
 
 Object.prototype.prop_access = prop_access;
 String.prototype.interpolate = interpolate;
@@ -11,4 +11,4 @@ String.prototype.interpolate = interpolate;
     "Coucou"
 ]), document.getElementById('root'));*/
 
-alert("NIQUE");
+ReactDOM.render(React.createElement(Hello, { name: "World" }), document.getElementById('root'));

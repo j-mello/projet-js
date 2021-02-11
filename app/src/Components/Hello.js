@@ -1,15 +1,19 @@
-import { Component } from "react";
 import { React } from "./../React/React.js";
 
 export class Hello extends React.Component {
 
-    /*propTypes = {
-        name: { type: "string", enum: ["world", "you", "me"] },
-      };*/
+    constructor (props){
+        super(props);
+    }
+
+    propTypes = {
+        name: { type: "string", enum: ["World", "you", "me"] },
+    };
     
-      render() {
-        return React.createElement("div", /*{ toWhat: { name: this.props.name } }*/ null, [
-          "Hello {{toWhat.name}}",
+    render() 
+    {
+        return React.createElement("div", { toWhat: { name: this.props.name }, class:"hello" }, [
+        "Hello {{toWhat.name}}",
         ]);
-      }
+    }
 }
