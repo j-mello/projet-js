@@ -7,7 +7,7 @@ export class Router extends React.Component {
 
     render(){
         return React.createElement("div", null, [
-           location.pathname == this.props.uri ?
+            location.pathname == this.props.uri ?
             React.createElement(this.props.component) : ""
         ]);
     }

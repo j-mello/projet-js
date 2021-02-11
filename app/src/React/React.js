@@ -1,7 +1,7 @@
 import { type_check, type_check_v1 } from "./libs/typecheck.js";
 
 export let React = {
-    Component: class{
+    Component: class {
         props = null;
         rendered = null;
         state = {};
@@ -70,9 +70,8 @@ export let React = {
             if (typeof(tagOrComponent.propsTypes) !== 'undefined' && !type_check(props, tagOrComponent.propsTypes)) throw new TypeError();
              // Le display doit être dans une instance déjà créé
             const component = new tagOrComponent(props);
-            const essai = component.display();
-            console.log(essai);
-            return essai;
+            const display = component.display();
+            return display;
         }
         return element;
     },
