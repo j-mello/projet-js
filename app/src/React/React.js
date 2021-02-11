@@ -1,7 +1,4 @@
-import { createElement } from "react";
 import { type_check, type_check_v1 } from "./libs/typecheck.js";
-import { interpolate } from "./libs/interpolate.js";
-
 
 export let React = {
     Component: class{
@@ -16,7 +13,7 @@ export let React = {
 
         display(newProps = null)
         {
-            if (shouldUpdate(newProps))
+            if (this.shouldUpdate(newProps))
             {
                 if(newProps != null)
                 {
@@ -29,19 +26,26 @@ export let React = {
 
         shouldUpdate(newProps)
         {
-            return JSON.stringify(this.props) !== JSON.stringify(this.newProps);
+            return JSON.stringify(this.props) !== JSON.stringify(this.newProps) || newProps === null;
+        }
+
+        setState(state)
+        {
+            this.state = {
+                ...this.state, ...state  //Fusionne le this.state et le state.
+            }
         }
 
         render() 
         {
-
+            //A coder dans les components
         }
     },
 
-    createElement(tagOrComponent, props, children)
+    createElement: function(tagOrComponent, props, children)
     {
         let element;
-        if (tagOrComponent === "div")
+        if (typeof(tagOrComponent) === "string") // Si élement du DOM
         {
             element = document.createElement(tagOrComponent);
             for (let attribute in props)
@@ -52,13 +56,22 @@ export let React = {
             {
                 if (typeof subElement === "string")
                 {
-                    subElement = document.createTextNode(subElement.interpolate(props));
-                    element.appendChild(subElement);
+                    if (props != null) 
+                    {
+                        subElement = subElement.interpolate(props);
+                    }
+                    subElement = document.createTextNode(subElement);
+                    
                 }
+                element.appendChild(subElement);
             }
-        } /**component */ else {
-            if (!type_check(props, tagOrComponent.propsTypes)) throw new TypeError();
-            return tagOrComponent.display(props);
+        } else { //Objet dans la classe component, vérifier si l'instance existe. Si elle existe, on la récupère, sinon on la crée
+            if (typeof(tagOrComponent.propsTypes) !== 'undefined' && !type_check(props, tagOrComponent.propsTypes)) throw new TypeError();
+             // Le display doit être dans une instance déjà créé
+            const component = new tagOrComponent(props);
+            const essai = component.display();
+            console.log(essai);
+            return essai;
         }
         return element;
     },
