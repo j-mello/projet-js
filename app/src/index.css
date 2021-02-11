@@ -1,0 +1,34 @@
+.backgrounIamge{
+   width: 100%;
+}
+
+.borderTop{
+    border-top: 1px solid #e5e5e5;
+    margin-top: 50px;
+    height:200px;
+    padding-top: 2rem;
+}
+
+.imageG{
+    height:360px;
+    background-color: #e9ecef;
+    margin-bottom: 50px;
+}
+
+.imageCards{
+    margin-bottom: 100px;
+    
+}
+
+.containerBody{
+    margin-bottom: 100px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.textImage{
+    padding-top: 3rem;
+    padding-left: 8rem;
+}
