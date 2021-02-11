@@ -3,7 +3,7 @@ import { Router } from "./Router.js";
 import { Hello } from "./Hello.js";
 import { Accueil } from "./Accueil.js";
 import { Presentation } from "./Presentation.js";
-
+import {MultipleElements} from "./MultipleElements.js";
 
 
 export class Root extends React.Component {
@@ -18,6 +18,7 @@ export class Root extends React.Component {
             React.createElement(Router, {uri: "/", component: Accueil}),
             React.createElement(Router, {uri: "/Hello", component: Hello}),
             React.createElement(Router, {uri: "/Presentation", component: Presentation}),
+            React.createElement(Router, {uri: "/MultipleElements", component: MultipleElements})
         ]);
     }
 }
