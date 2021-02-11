@@ -13,8 +13,8 @@ export class Root extends React.Component {
     render()
     {
         return React.createElement("div", null, [
-           React.createElement(Router, {uri: "/Hello", component: Hello}),
-           React.createElement(Router, {uri: "/", component: Accueil})
+            React.createElement(Router, {uri: "/", component: Accueil}),
+            React.createElement(Router, {uri: "/Hello", component: Hello}),
         ]);
     }
 }
