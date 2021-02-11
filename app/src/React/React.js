@@ -5,16 +5,33 @@ import { interpolate } from "./libs/interpolate.js";
 
 export let React = {
     Component: class{
+        props = null;
+        rendered = null;
         state = {};
+
         constructor(props)
         {
             this.props = props;
         }
-        display(props)
+
+        display(newProps = null)
         {
-            // A coder
-            return this.render
+            if (shouldUpdate(newProps))
+            {
+                if(newProps != null)
+                {
+                    this.props = newProps;
+                }
+                this.rendered = this.render();
+            }
+            return this.rendered;
         }
+
+        shouldUpdate(newProps)
+        {
+            return JSON.stringify(this.props) !== JSON.stringify(this.newProps);
+        }
+
         render() 
         {
 
