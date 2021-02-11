@@ -39,6 +39,7 @@ export class Presentation extends React.Component {
                         React.createElement("div", { class: "container textImage"},[
                             React.createElement("h1", null,"Bootstrap Tutorial"),
                             React.createElement("p", null, "This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique."),
+
                         ])
                     ])
                 ])
