@@ -1,4 +1,5 @@
-export function prop_access(path) {
+export function prop_access(path) 
+{
     if (typeof(path) != "string" || path === "") return obj;
     let obj = this.valueOf();
     let pathSplitted = path.split(".");
